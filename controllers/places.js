@@ -1,35 +1,49 @@
 const router = require('express').Router()
 
 router.get('/', (req, res) =>{
-    res.send('GET /places')
+    let places = [{
+        name : 'H-Thai-ML',
+        city : 'Seattle',
+        state: 'WA',
+        cuisines: 'Thai, Pan-Asian',
+        pic: 'http://placekitten.com/250/250' 
+
+    },  {
+        name: 'Coding Cat Cafe',
+        city: 'Phoenix',
+        state: 'AZ',
+        cuisines: 'Coffee, Bakery',
+        pic: 'http://placekitten.com/250/250'
+    }]
+    res.render('places/index' , {places})
 })
 
 router.post('/places', (req, res) =>{
-    res.send('POST /places')
+    res.send(' /places')
 })
 
 router.get('/places/new', (req, res) =>{
-    res.send('GET /places')
+    res.render('/places')
 })
 
 router.get('/places/:id', (req, res) =>{
-    res.send('GET /places')
+    res.send('/places')
 })
 
 router.put('/places/:id', (req, res) =>{
-    res.send('PUT /places')
+    res.send('/places')
 })
 
 router.get('/places/:id/edit', (req, res) =>{
-    res.send('GET /places')
+    res.send('/places')
 })
 
 router.delete('/places/:id', (req, res) =>{
-    res.send('Delete /places')
+    res.send('/places')
 })
 
 router.post('/places/:id/rant', (req, res) =>{
-    res.send('POST /places')
+    res.send('/places')
 })
 
 router.delete('/places/:id/rant/:rantId', (req, res) =>{
