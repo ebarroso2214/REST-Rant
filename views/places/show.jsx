@@ -8,6 +8,8 @@ function show(data){
             <main>
                 <h1>{data.place.name}</h1>
                 <img src = {data.place.pic} alt={data.place.name}/>
+                <h2>{data.place.city}, {data.place.state}</h2>
+                <h2>{data.place.cuisines}</h2>
                 <h1>Currently Unrated!</h1>
                 <a href={`/places/${data.id}/edit`} className='btn btn-warning'>Edit</a>
 
