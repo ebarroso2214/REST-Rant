@@ -98,8 +98,6 @@ router.delete('/:id/rant/:rantId', (req, res) =>{
     res.send('Delete /places')
 })
 
-
-
 // More code here in a moment
 
 module.exports = router
