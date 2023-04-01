@@ -10,7 +10,7 @@ function new_form (){
                     <div>
                         <label htmlFor='name'>Place Name</label>
                         <input className='form-control' id='name' name='name' required/>
-                    </div>
+                    </div> 
 
                     <div className='form-group'>
                         <label htmlFor="founded">Founded Year</label>
