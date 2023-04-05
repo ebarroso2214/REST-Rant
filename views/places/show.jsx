@@ -2,7 +2,23 @@ const React = require('react')
 const Def = require('../default')
 
 function show(data){
-    
+    let comments = (
+        <h3 className='inactive'>No comments yet!</h3>
+    )
+    if (data.place.comments.length){
+        comments = data.place.comments.map(c =>{
+            return(
+                <div className='border'>
+                    <h2 className="rant">{c.rant ? 'Rant!' : 'Rave!'}</h2>
+                    <h4>{c.content}</h4>
+                    <h3>
+                        <strong> - {c.author}</strong>
+                    </h3>
+                    <h4>Rating: {c.stars}</h4>
+                </div>
+            )
+        })
+    }
     return(
         <Def>
             <main>
@@ -12,15 +28,46 @@ function show(data){
                 
                 <h3>{data.place.showEstablished()}</h3>
                 <h2>Serving {data.place.cuisines}</h2>
-                <h1>Currently Unrated!</h1>
+                <h1>Want to leave a review?</h1>
+                
+                <form method='POST' action={`/places/${data.place.id}/rant?_method=POST`}>
+                   
+                    <div>
+                        <label htmlFor="author">Author</label>
+                        <input className='form-control input' type="text" name='author' id='author' />
+                    </div>
+                    <div>
+                        <label htmlFor="content">Content</label>
+                        <textarea className='form-control input' name="content" id="content" cols="30" rows="1"></textarea>
+                    </div>
+                    <div>
+                        <label htmlFor="stars">Star Rating</label>
+                        <input className='form-control input' type="number" id='stars' name='' step={0.5} />
+                    </div>
+                    <div>
+                        <label htmlFor="rant">Rant</label>
+                        <input className='form-check-input'  type="checkbox" value="" name="rant" id="rant" />
+                    </div>
+                    
+                    <input type="submit" />
+                </form>
+                <h2>Comments</h2>
+                {comments}  
+                
                 <a href={`/places/${data.id}/edit`} className='btn btn-warning'>Edit</a>
+
+
 
                 <form method='POST' action={`/places/${data.id}?_method=DELETE`}>
                     <button type='submit' className='btn btn-danger'>Delete</button>
                 </form>
+
             </main>
         </Def>  
     )
 }
 
 module.exports = show
+
+
+

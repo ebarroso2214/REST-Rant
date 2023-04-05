@@ -54,7 +54,10 @@ main{
     background-color: white;
 }
 
-
+form .input {
+    margin-left: 25%;
+    width: 50%;
+}
 
 /* .btn {
     background-color: rgb(0, 132, 255);

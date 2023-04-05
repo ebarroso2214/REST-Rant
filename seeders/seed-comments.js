@@ -3,7 +3,7 @@ const db = require('../models')
 async function seed(){
     //Getting the place H-Thai-Ml
     let place = await db.Place.findOne({name: "H-Thai-ML"})
-
+    //Creates a fake sample comment
     let comment = await db.Comment.create({
         author: 'Famished Fran',
         rant: false,
