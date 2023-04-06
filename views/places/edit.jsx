@@ -18,6 +18,11 @@ function edit_form (data){
                                 required />
                         </div>
 
+                        {/* <div className='form-group col-sm-6 cold-md-4 col-lg-3'>
+                            <label htmlFor="founded">Founded</label>
+                            <input className='form-control' name="founded" id="founded" value={data.place.founded}/>
+                        </div> */}
+
                         <div className='form-group col-sm-6 cold-md-4 col-lg-3'>
                             <label htmlFor="pic">Place Picture</label>
                             <input className='form-control' name="pic" id="pic" value={data.place.pic}/>

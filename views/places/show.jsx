@@ -5,6 +5,21 @@ function show(data){
     let comments = (
         <h3 className='inactive'>No comments yet!</h3>
     )
+    
+    let rating = (
+        <h3 className='inactive'>Not yet rated</h3>
+    )
+    if(data.place.comments.length){
+        let sumRatings = data.place.comments.reduce((tot, c) => {
+            return tot + c.stars
+        }, 0)
+        let averageRating = Math.round(sumRatings / data.place.comments.length)
+
+        rating = (
+            <h3>{averageRating} stars</h3>
+        )
+    }
+
     if (data.place.comments.length){
         comments = data.place.comments.map(c =>{
             return(
@@ -24,6 +39,9 @@ function show(data){
             <main>
                 <h1>{data.place.name}</h1>
                 <img src = {data.place.pic} alt={data.place.name}/>
+                <h2>Rating</h2>
+                {rating}
+                <br />
                 <h2>{data.place.city}, {data.place.state}</h2>
                 
                 <h3>{data.place.showEstablished()}</h3>
@@ -42,7 +60,7 @@ function show(data){
                     </div>
                     <div>
                         <label htmlFor="stars">Star Rating</label>
-                        <input className='form-control input' type="number" id='stars' name='' step={0.5} />
+                        <input className='form-control input' type="number" id='stars' name='stars' step={0.5} />
                     </div>
                     <div>
                         <label htmlFor="rant">Rant</label>
@@ -54,11 +72,11 @@ function show(data){
                 <h2>Comments</h2>
                 {comments}  
                 
-                <a href={`/places/${data.id}/edit`} className='btn btn-warning'>Edit</a>
+                <a href={`/places/${data.place.id}/edit`} className='btn btn-warning'>Edit</a>
 
 
 
-                <form method='POST' action={`/places/${data.id}?_method=DELETE`}>
+                <form method='POST' action={`/places/${data.place.id}?_method=DELETE`}>
                     <button type='submit' className='btn btn-danger'>Delete</button>
                 </form>
 
