@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const places = require('../models/places.js')
 const db = require('../models') //db is just short for database, makes it easier to understand.
+const comment = require('../models/comment.js')
 
 router.get('/', (req, res) => {
   db.Place.find()
@@ -54,7 +55,7 @@ router.get('/:id', (req, res) => {
 })
 
 router.put('/:id', (req, res) => {
-  db.Place.findByIdAndUpdate(rq.params.id, req.body)
+  db.Place.findByIdAndUpdate(req.params.id, req.body)
   .then(()=>{
     res.redirect(`/places/${req.params.id}`)
   })
@@ -110,7 +111,14 @@ router.post('/:id/rant', (req, res) => {
 })
 
 router.delete('/:id/rant/:rantId', (req, res) => {
-    res.send('GET /places/:id/rant/:rantId stub')
+  db.Comment.findByIdAndDelete(req.params.rantId)
+  .then(place =>{
+    res.redirect(`/places/${req.params.id}`)
+  })
+  .catch(err=>{
+    console.log('err',err)
+    res.redirect(`error404`)
+  })
 })
 
 module.exports = router
