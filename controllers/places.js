@@ -110,10 +110,10 @@ router.post('/:id/rant', (req, res) => {
   // res.send('GET /places/:id/rant stub')
 })
 
-router.delete('/:id/rant/:rantId', (req, res) => {
-  db.Comment.findByIdAndDelete(req.params.rantId)
+router.delete('/:id/rant/:rantId', (req, res) => { //rantId is the path
+  db.Comment.findByIdAndDelete(req.params.rantId) //rantId here refers to the path, BOTH have to be the same
   .then(place =>{
-    res.redirect(`/places/${req.params.id}`)
+    res.redirect(`/places/${req.params.id}`) //.params.id is for id of the place as you see in the path /:id, /:id = req.params.id 
   })
   .catch(err=>{
     console.log('err',err)
